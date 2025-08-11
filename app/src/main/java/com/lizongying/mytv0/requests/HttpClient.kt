@@ -18,7 +18,7 @@ import javax.net.ssl.X509TrustManager
 
 
 object HttpClient {
-    const val TAG = "okHttp/Mursor-1.0.0"
+    const val TAG = "HttpClient"
 
     private val clientCache = mutableMapOf<String?, OkHttpClient>()
 
