@@ -1,5 +1,6 @@
 package com.lizongying.mytv0.requests
 
+
 import android.net.Uri
 import android.os.Build
 import android.util.Log
@@ -14,6 +15,7 @@ import java.security.KeyStore
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
+
 
 object HttpClient {
     const val TAG = "HttpClient"
@@ -83,13 +85,6 @@ object HttpClient {
             .hostnameVerifier { _, _ -> true }
             .connectionSpecs(listOf(ConnectionSpec.COMPATIBLE_TLS, ConnectionSpec.CLEARTEXT))
             .dns(DnsCache())
-            .addInterceptor { chain ->
-                val originalRequest = chain.request()
-                val newRequest = originalRequest.newBuilder()
-                    .header("User-Agent", "okHttp/Mursor-1.0.0") // 这里换成你想要的User-Agent
-                    .build()
-                chain.proceed(newRequest)
-            }
             .apply { enableTls12OnPreLollipop() }
     }
 
